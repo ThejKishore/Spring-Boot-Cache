@@ -1,0 +1,43 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/libs-release" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/libs-release" }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-cache')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	/*Redis Config */
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	/*Gemfire Config*/
+	compile("org.springframework.boot:spring-boot-starter-data-gemfire")
+	compile('org.springframework.boot:spring-boot-starter-web')
+	/*EHCache 2.x*/
+	compile('net.sf.ehcache:ehcache:2.10.2.2.21')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	runtime('com.h2database:h2')
+	/*Used by GemFire */
+	runtime("org.springframework.shell:spring-shell:1.0.0.RELEASE")
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
